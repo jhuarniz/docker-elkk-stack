@@ -14,7 +14,7 @@ services:
     ports:
       - "9092:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 10.20.170.243
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.125
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -27,6 +27,8 @@ services:
       context: elasticsearch/
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml:ro
+      - ../plugins:/usr/share/elasticsearch/plugins
+      - ./elasticsearch/config/readonlyrest.yml:/usr/share/elasticsearch/config/readonlyrest.yml
     ports:
       - "9200:9200"
       - "9300:9300"
